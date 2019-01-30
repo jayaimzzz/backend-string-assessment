@@ -19,7 +19,11 @@
 
 def verbing(s):
     """Your code goes here.  Edit this docstring."""
-    return
+    if s[-3:] == 'ing':
+        result = s + "ly"
+    else:
+        result = s + "ing"
+    return s if len(s) < 3 else result
 
 
 # E. not_bad
@@ -32,7 +36,11 @@ def verbing(s):
 # This dinner is good!
 def not_bad(s):
     """Your code goes here.  Edit this docstring."""
-    return
+    index_of_not = s.find("not")
+    index_of_bad = s.find("bad")
+    if index_of_not < index_of_bad:
+        s = s[0:index_of_not] + "good" + s[index_of_bad + 3:]
+    return s
 
 
 # F. front_back
@@ -44,8 +52,15 @@ def not_bad(s):
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
     """Your code goes here.  Edit this docstring."""
-    return
-
+    a_split = split_in_half(a)
+    a_front, a_back = a_split[0], a_split[1]
+    b_split = split_in_half(b)
+    b_front, b_back = b_split[0], b_split[1]
+    return a_front + b_front + a_back + b_back
+def split_in_half(s):
+    l = len(s)
+    halfway = l - l // 2
+    return [s[0:halfway],s[halfway:]]
 
 # Provided simple test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
